@@ -27,4 +27,34 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
+          environment:
+            environmentRef: demo
+            deployToAll: false
+        tags: {}
+    - stage:
+        name: artifact
+        identifier: artifact
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: artifact_test
+                  identifier: artifact_test
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo "Creating artifact"
+                          mkdir output
+                          echo "Hello from artifact stage" > output/app.txt
+                          zip -r artifact.zip output
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
         tags: {}
