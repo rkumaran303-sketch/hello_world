@@ -50,17 +50,16 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          echo "Installing zip tool"
-                          apt-get update -y
-                          apt-get install -y zip
+                          echo "Cleaning old artifact"
+                          rm -rf output
 
-                          echo "Creating artifact"
+                          echo "Creating artifact directory"
                           mkdir output
-                          echo "Hello from artifact stage" > output/app.txt
-                          zip -r artifact.zip output
 
-                          echo "Listing files"
-                          ls -l
+                          echo "Hello from artifact stage" > output/app.txt
+
+                          echo "Showing artifact contents"
+                          ls -R output
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
