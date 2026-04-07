@@ -91,3 +91,9 @@ pipeline:
         when:
           pipelineStatus: Success
           condition: <+pipeline.stages.artifact.status> == "SUCCEEDED"
+  variables:
+    - name: input1
+      type: String
+      description: ""
+      required: false
+      value: value1
