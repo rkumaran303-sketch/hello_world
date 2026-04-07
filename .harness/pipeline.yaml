@@ -88,3 +88,6 @@ pipeline:
                     approverInputs: []
                   timeout: 1d
         tags: {}
+        when:
+          pipelineStatus: Success
+          condition: <+pipeline.stages.artifact.status> == "SUCCEEDED"
